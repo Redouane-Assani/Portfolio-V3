@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -ExecutionPolicy Bypass -File \"c:/Users/Redouane/Portfolio-V3/tmp_read2.ps1\")"
+    ]
+  }
+}

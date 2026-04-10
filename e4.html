@@ -66,16 +66,78 @@
         </div>
 
         <div style="text-align: center;">
-            <a href="assets/pdf/tablsynt.pdf" download="Tableau_Synthese_E4_PaulaCIACAN.pdf" class="btn-download">
+            <a href="assets/pdf/tablsynt.pdf" download="Tableau_Synthese_E4_Redouane_Assani.pdf" class="btn-download">
                 Télécharger le Tableau de Synthèse E4 complet en PDF
             </a>
         </div>
     </div>
+
     <div class="content-box">
-        <h3 style="color:var(--accent-color);">Projets de Configurations complete d'un NAS Synology</h3>
-        <p>Cette documentation représente la procédure complete pour la configuration d'un synology NAS ainsi que sa mise en place dans un réseaux professionnellesS</p>
+        <h3 style="color:var(--accent-color);">Configuration et Administration d'un NAS Synology</h3>
+        <p>Dans le cadre de mes activités professionnelles, j'ai réalisé la mise en place complète d'un NAS Synology DS225+ ainsi que la configuration d'un accès VPN sécurisé. Ces projets couvrent les compétences E4 liées à l'installation, la configuration et la documentation de solutions de stockage réseau et d'accès à distance.</p>
+
+        <h4 style="color:var(--accent-color); margin: 25px 0 10px 0;">
+            <span style="background:#004d27; color:#00E676; padding:3px 10px; border-radius:3px; font-size:0.75rem; font-family:'Courier New'; letter-spacing:1px;">PROJETS RÉALISÉS — PDF</span>
+        </h4>
+
+        <div style="border-left: 3px solid var(--accent-color); padding-left: 15px; margin: 20px 0;">
+            <h4 style="color:white; margin-bottom:10px;">Configuration complète d'un NAS Synology DS225+</h4>
+            <p>Ce projet documente l'installation et la configuration intégrale d'un NAS Synology DS225+ en environnement professionnel. Principales étapes réalisées :</p>
+            <ul style="color:#ccc; line-height:1.9; margin: 10px 0;">
+                <li>Découverte et installation via <strong>findsynology.com</strong> et déploiement du système DSM</li>
+                <li>Création d'une grappe <strong>RAID SHR</strong> avec système de fichiers <strong>Btrfs</strong> (2× HAT3300-4T → 3,6 To utilisables)</li>
+                <li>Durcissement sécurité : mot de passe 16+ caractères, blocage IP, Anti-DDoS, ports personnalisés (35000/35001), pare-feu DSM, <strong>authentification 2FA/OTP</strong>, alertes email</li>
+                <li>Accès distant : <strong>QuickConnect</strong> + <strong>DDNS</strong></li>
+                <li><strong>Dossiers partagés chiffrés</strong> (COMMUN, DIRECTION, BACKUP) avec gestion des droits</li>
+                <li><strong>Antivirus Essential</strong> avec scan quotidien automatisé</li>
+                <li><strong>Hyper Backup</strong> : rotation locale (64 versions) + sauvegarde cloud <strong>C2 Storage</strong></li>
+            </ul>
+            <a href="assets/pdf/NAS DOC.pdf" target="_blank" class="btn-download">📄 Voir le projet NAS Synology (PDF)</a>
+        </div>
+
+        <div style="border-left: 3px solid var(--accent-color); padding-left: 15px; margin: 20px 0;">
+            <h4 style="color:white; margin-bottom:10px;">Mise en place d'un accès VPN OpenVPN sur NAS Synology</h4>
+            <p>Ce projet présente le déploiement d'un tunnel <strong>VPN OpenVPN</strong> via le package <em>VPN Server</em> intégré au DSM Synology, permettant un accès distant sécurisé aux ressources internes. Étapes couvertes :</p>
+            <ul style="color:#ccc; line-height:1.9; margin: 10px 0;">
+                <li>Installation du client OpenVPN sur les postes utilisateurs</li>
+                <li>Installation et activation du package <strong>VPN Server</strong> dans DSM</li>
+                <li>Configuration : désactivation de la compression, autorisation d'accès au LAN local</li>
+                <li>Redirection de port <strong>NAT</strong> sur le routeur (UDP, port 1194)</li>
+                <li>Export du fichier <strong>VPNConfig</strong> avec IP publique / lien QuickConnect + port</li>
+                <li>Import de la configuration sur le client → tunnel VPN opérationnel</li>
+            </ul>
+            <a href="assets/pdf/MISE EN PLACE OPEN VPN.pdf" target="_blank" class="btn-download">📄 Voir la procédure OpenVPN (PDF)</a>
+        </div>
+
+        <h4 style="color:var(--accent-color); margin: 30px 0 10px 0;">
+            <span style="background:#1a1500; color:#ffd600; padding:3px 10px; border-radius:3px; font-size:0.75rem; font-family:'Courier New'; letter-spacing:1px;">DOCUMENTATION INTERNE / CLIENT</span>
+        </h4>
+
+        <div style="border-left: 3px solid #ffd600; padding-left: 15px; margin: 20px 0;">
+            <h4 style="color:white; margin-bottom:10px;">Procédure de connexion au NAS (SMB)</h4>
+            <p>Document à destination des utilisateurs finaux ou clients, expliquant comment accéder au NAS via le protocole <strong>SMB</strong> depuis Windows ou macOS.</p>
+            <ul style="color:#ccc; line-height:1.9; margin: 10px 0;">
+                <li><strong>Pré-requis :</strong> adresse IP ou nom d'hôte du NAS, identifiants valides, connexion au même réseau</li>
+                <li><strong>Windows :</strong> saisir <code style="background:#1a1a1a; padding:1px 5px; border-radius:3px;">\\adresse_du_NAS</code> dans la barre d'adresse de l'Explorateur de fichiers</li>
+                <li><strong>macOS :</strong> Finder → Aller → Se connecter au serveur → <code style="background:#1a1a1a; padding:1px 5px; border-radius:3px;">smb://adresse_du_NAS</code></li>
+            </ul>
+            <a href="assets/pdf/Procédure de connexion au nas.odt" target="_blank" class="btn-download">📝 Voir la procédure de connexion (ODT)</a>
+        </div>
+
+        <div style="border-left: 3px solid #ffd600; padding-left: 15px; margin: 20px 0;">
+            <h4 style="color:white; margin-bottom:10px;">Procédure d'ajout de licences Google Workspace</h4>
+            <p>Document interne / client décrivant la marche à suivre pour augmenter le nombre de licences d'un abonnement <strong>Google Workspace</strong> via le portail <strong>TD SYNNEX StreamOne Ion</strong>.</p>
+            <ul style="color:#ccc; line-height:1.9; margin: 10px 0;">
+                <li>Accès au portail TD SYNNEX → section StreamOne Ion</li>
+                <li>Sélection du client dans la liste → onglet <strong>Inventaire</strong></li>
+                <li>Clic sur l'abonnement Google Workspace Business Starter (Annual Plan)</li>
+                <li>Bouton <strong>GÉRER L'ABONNEMENT</strong> → modification du champ <em>Number Of Seats</em></li>
+                <li>Validation via <strong>Update</strong> → facturation au prorata jusqu'à fin de période annuelle</li>
+                <li>Vérification de la prise en compte dans l'historique de l'abonnement</li>
+            </ul>
+            <a href="assets/pdf/Procedure_Ajout_Licences_Google_Workspace.docx" target="_blank" class="btn-download">📝 Voir la procédure Google Workspace (DOCX)</a>
+        </div>
     </div>
 </main>
-    </main>
 </body>
 </html>

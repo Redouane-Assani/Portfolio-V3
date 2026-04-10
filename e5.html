@@ -5,6 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Épreuve E5 - SISR</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-left: 10px;
+            vertical-align: middle;
+            font-family: var(--font-main);
+        }
+        .badge-done   { background-color: var(--accent-color); color: #000; }
+        .badge-wip    { background-color: #f5a623; color: #000; }
+
+        .infra-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            font-family: var(--font-main);
+        }
+        .infra-table th {
+            background-color: var(--accent-dim);
+            color: var(--accent-color);
+            padding: 8px 12px;
+            text-align: left;
+            border: 1px solid var(--accent-dim);
+        }
+        .infra-table td {
+            padding: 7px 12px;
+            border: 1px solid #222;
+            color: #ccc;
+        }
+        .infra-table tr:nth-child(even) td { background-color: #0a0a0a; }
+
+        .tag-new  { color: var(--accent-color); font-weight: bold; }
+        .tag-reuse { color: #f5a623; }
+
+        .rule-block {
+            background-color: #0a0a0a;
+            border-left: 3px solid var(--accent-dim);
+            padding: 10px 15px;
+            margin-top: 10px;
+            font-family: var(--font-main);
+            font-size: 0.85rem;
+            color: #aaa;
+            border-radius: 0 4px 4px 0;
+        }
+        .rule-block .pass { color: var(--accent-color); }
+        .rule-block .block { color: #ff5252; }
+
+        .equip-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .equip-card {
+            background-color: #0a0a0a;
+            border: 1px solid var(--accent-dim);
+            border-radius: 6px;
+            padding: 14px;
+        }
+        .equip-card h4 {
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            font-family: var(--font-main);
+            font-size: 0.9rem;
+        }
+        .equip-card p, .equip-card li {
+            font-size: 0.88rem;
+            color: #bbb;
+            line-height: 1.6;
+        }
+        .equip-card ul { padding-left: 18px; }
+
+        @media (max-width: 768px) {
+            .equip-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
     <header class="page-header">
@@ -13,19 +93,264 @@
     </header>
 
     <main class="container">
-        <h1 class="section-title">Administration des Systèmes et Réseaux</h1>
-        
+        <h1 class="section-title">Administration des Systèmes et Réseaux (Épreuve E5)</h1>
+
         <div class="content-box">
-            <p>L'épreuve E5 certifie les compétences en conception et sécurisation des infrastructures, ainsi qu'en administration et supervision.</p>
+            <p>L'épreuve E5 certifie les compétences en conception, déploiement et sécurisation d'infrastructures systèmes et réseaux. Elle s'appuie sur deux projets réalisés en maquette sur Proxmox dans le cadre du BTS SIO SISR.</p>
         </div>
 
-        <h2 class="section-title">Mes Projets d'Administration</h2>
-        
+        <!-- ===== PROJET 1 ===== -->
+        <h2 class="section-title">Projet 1 — Infrastructure réseau sécurisée <span class="badge badge-done">RÉALISÉ</span></h2>
+
         <div class="content-box">
-            <h3 style="color:var(--accent-color);">🚧 Documentation en cours</h3>
-            <p>Cette section présentera mes projets d'architecture réseau.</p>
-            <p><em>Exemples à venir : Configuration Active Directory, VLANs, Pare-feu, Scripts PowerShell/Bash.</em></p>
+            <h3 style="color:var(--accent-color);">Contexte</h3>
+            <p>Mise en place d'une infrastructure réseau complète pour une PME fictive, intégrant une solution de stockage NAS, un pare-feu, un hyperviseur et une supervision centralisée des journaux.</p>
         </div>
+
+        <div class="content-box">
+            <h3 style="color:var(--accent-color);">Équipements déployés</h3>
+            <div class="equip-grid">
+                <div class="equip-card">
+                    <h4>Firewall Stormshield</h4>
+                    <ul>
+                        <li>Routage inter-VLAN (firewall-on-a-stick)</li>
+                        <li>Politique de filtrage par sections</li>
+                        <li>NAT / accès Internet</li>
+                        <li>DHCP pour le VLAN 2090</li>
+                    </ul>
+                </div>
+                <div class="equip-card">
+                    <h4>Switch Cisco CBS220</h4>
+                    <ul>
+                        <li>VLAN 2090 — LAN principal</li>
+                        <li>VLAN 2092 — DMZ</li>
+                        <li>Lien trunk taggé vers le Stormshield</li>
+                    </ul>
+                </div>
+                <div class="equip-card">
+                    <h4>Serveur Proxmox</h4>
+                    <ul>
+                        <li>Hyperviseur de la maquette</li>
+                        <li>Hébergement des VMs (client, log)</li>
+                        <li>Bridges réseau avec tag VLAN</li>
+                    </ul>
+                </div>
+                <div class="equip-card">
+                    <h4>TrueNAS</h4>
+                    <ul>
+                        <li>NAS réseau (partages SMB/NFS)</li>
+                        <li>Stockage centralisé</li>
+                        <li>Envoi des logs vers le serveur Syslog</li>
+                    </ul>
+                </div>
+                <div class="equip-card">
+                    <h4>VM Rsyslog (supervision)</h4>
+                    <ul>
+                        <li>Centralisation des journaux</li>
+                        <li>Sources : Stormshield + TrueNAS</li>
+                        <li>VLAN 2090 — 172.16.209.x</li>
+                    </ul>
+                </div>
+                <div class="equip-card">
+                    <h4>VM Cliente</h4>
+                    <ul>
+                        <li>Poste client de test (VLAN 2090)</li>
+                        <li>Adresse DHCP via le Stormshield</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <h3 style="color:var(--accent-color);">Plan d'adressage — Projet 1</h3>
+            <table class="infra-table">
+                <thead>
+                    <tr>
+                        <th>VLAN</th>
+                        <th>Nom</th>
+                        <th>Réseau</th>
+                        <th>Passerelle</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>WAN</td><td>OUT</td><td>DHCP classe</td><td>—</td><td>Accès Internet</td></tr>
+                    <tr><td>2090</td><td>LAN</td><td>172.16.209.0/24</td><td>172.16.209.1</td><td>Postes clients, Rsyslog, TrueNAS</td></tr>
+                    <tr><td>2092</td><td>DMZ</td><td>—</td><td>—</td><td>Services exposés (DMZ)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ===== PROJET 2 ===== -->
+        <h2 class="section-title">Projet 2 — Active Directory &amp; Wi-Fi 802.1X <span class="badge badge-wip">EN COURS</span></h2>
+
+        <div class="content-box">
+            <h3 style="color:var(--accent-color);">Contexte</h3>
+            <p>
+                Une PME de 40 employés souhaite centraliser l'authentification de ses utilisateurs et sécuriser l'accès à son réseau sans-fil. Le projet s'appuie sur l'infrastructure du projet 1 (pare-feu, switch, Proxmox, Rsyslog) et y ajoute un contrôleur de domaine Windows Server et des bornes Wi-Fi Cisco configurées en 802.1X.
+            </p>
+        </div>
+
+        <div class="content-box">
+            <h3 style="color:var(--accent-color);">Architecture technique</h3>
+            <p style="margin-bottom:12px; color:#888; font-size:0.9rem;">
+                <span class="tag-new">Vert = Nouveau dans ce projet</span> &nbsp;|&nbsp;
+                <span class="tag-reuse">Orange = Réutilisé du projet 1</span>
+            </p>
+            <div class="equip-grid">
+                <div class="equip-card">
+                    <h4><span class="tag-new">VM SRV-AD-01</span> — Windows Server 2025</h4>
+                    <ul>
+                        <li>Active Directory DS + DNS + DHCP</li>
+                        <li>NPS (serveur RADIUS intégré)</li>
+                        <li>Domaine : <strong>simcorp.local</strong></li>
+                        <li>IP fixe : 172.16.213.10 (VLAN 2093)</li>
+                    </ul>
+                </div>
+                <div class="equip-card">
+                    <h4><span class="tag-new">Bornes Wi-Fi Cisco</span></h4>
+                    <ul>
+                        <li>Mode 802.1X — EAP-PEAP</li>
+                        <li>Rôle d'authenticator</li>
+                        <li>Relaient les requêtes vers le NPS</li>
+                        <li>IP de gestion : 172.16.211.10 (VLAN 2091)</li>
+                    </ul>
+                </div>
+                <div class="equip-card">
+                    <h4><span class="tag-reuse">Stormshield</span> — Nouvelles règles</h4>
+                    <ul>
+                        <li>Interfaces VLAN 2091 et 2093 ajoutées</li>
+                        <li>DHCP pour VLAN 2091 et 2093</li>
+                        <li>Filtrage inter-VLAN (isolation Wi-Fi)</li>
+                    </ul>
+                </div>
+                <div class="equip-card">
+                    <h4><span class="tag-reuse">Switch Cisco CBS220</span> — Mis à jour</h4>
+                    <ul>
+                        <li>VLAN 2091 (Wi-Fi) ajouté</li>
+                        <li>VLAN 2093 (Serveurs) ajouté</li>
+                        <li>Trunk mis à jour vers Stormshield et Proxmox</li>
+                    </ul>
+                </div>
+                <div class="equip-card">
+                    <h4><span class="tag-reuse">VM Rsyslog</span> — Étendue</h4>
+                    <ul>
+                        <li>Sources ajoutées : AD + NPS</li>
+                        <li>Centralise les authentifications Wi-Fi</li>
+                        <li>Règle FW : UDP 514 de VLAN 2093 → 2090</li>
+                    </ul>
+                </div>
+                <div class="equip-card">
+                    <h4><span class="tag-reuse">TrueNAS</span> — Étendu</h4>
+                    <ul>
+                        <li>Stockage des profils itinérants AD</li>
+                        <li>Partage réseau accessible depuis le domaine</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <h3 style="color:var(--accent-color);">Plan d'adressage — Projet 2</h3>
+            <table class="infra-table">
+                <thead>
+                    <tr>
+                        <th>VLAN</th>
+                        <th>Nom</th>
+                        <th>Réseau</th>
+                        <th>Passerelle</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>WAN</td><td>OUT</td><td>DHCP classe</td><td>—</td><td>Accès Internet</td></tr>
+                    <tr><td>2090</td><td>LAN Clients</td><td>172.16.209.0/24</td><td>172.16.209.1</td><td>Postes clients, Rsyslog</td></tr>
+                    <tr><td>2091</td><td>Wi-Fi</td><td>172.16.211.0/24</td><td>172.16.211.1</td><td>Bornes Cisco + clients Wi-Fi</td></tr>
+                    <tr><td>2092</td><td>DMZ</td><td>(projet 1)</td><td>—</td><td>Réservé projet 1</td></tr>
+                    <tr><td>2093</td><td>Serveurs</td><td>172.16.213.0/24</td><td>172.16.213.1</td><td>AD, NPS/RADIUS</td></tr>
+                </tbody>
+            </table>
+            <br>
+            <table class="infra-table">
+                <thead>
+                    <tr><th>Équipement</th><th>VLAN</th><th>IP fixe</th><th>Rôle</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Firewall — patte LAN</td><td>2090</td><td>172.16.209.1</td><td>Passerelle + DHCP clients</td></tr>
+                    <tr><td>Firewall — patte Wi-Fi</td><td>2091</td><td>172.16.211.1</td><td>Passerelle + DHCP Wi-Fi</td></tr>
+                    <tr><td>Firewall — patte Serveurs</td><td>2093</td><td>172.16.213.1</td><td>Passerelle Serveurs</td></tr>
+                    <tr><td>SRV-AD-01 (AD+NPS)</td><td>2093</td><td>172.16.213.10</td><td>Contrôleur de domaine + RADIUS</td></tr>
+                    <tr><td>Borne Wi-Fi Cisco</td><td>2091</td><td>172.16.211.10</td><td>Authenticator 802.1X</td></tr>
+                    <tr><td>VM Rsyslog</td><td>2090</td><td>172.16.209.x</td><td>Centralisation des logs</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="content-box">
+            <h3 style="color:var(--accent-color);">Fonctionnement du 802.1X — Flux d'authentification</h3>
+            <p style="margin-bottom:12px;">Lorsqu'un utilisateur se connecte au Wi-Fi, le flux est le suivant :</p>
+            <div class="rule-block">
+                <span style="color:#f5a623;">①</span> Le client Wi-Fi demande l'accès au réseau sans-fil.<br>
+                <span style="color:#f5a623;">②</span> La borne Cisco <strong>bloque le trafic</strong> et demande des identifiants (EAP-PEAP).<br>
+                <span style="color:#f5a623;">③</span> La borne relaye les identifiants vers le serveur <strong>NPS (RADIUS) — UDP 1812</strong>.<br>
+                <span style="color:#f5a623;">④</span> Le NPS interroge l'<strong>Active Directory</strong> : le compte existe-t-il ? Est-il dans le groupe GRP_WiFi-Autorises ?<br>
+                <span class="pass">⑤ OUI →</span> accès accordé, le client obtient une IP dans le VLAN 2091.<br>
+                <span class="block">⑤ NON →</span> connexion rejetée, aucun accès réseau.
+            </div>
+            <p style="margin-top:12px; color:#888; font-size:0.88rem;">
+                Chaque connexion est nominative, journalisée dans le Rsyslog et révocable en désactivant simplement le compte AD.
+            </p>
+        </div>
+
+        <div class="content-box">
+            <h3 style="color:var(--accent-color);">Politique de filtrage Stormshield — VLAN 2091 &amp; 2093</h3>
+            <p style="margin-bottom:10px; color:#888; font-size:0.88rem;">Les règles sont lues de haut en bas. Le premier match s'applique.</p>
+            <div class="rule-block">
+                <span class="pass">PASS</span>  &nbsp;| VLAN-WiFi → SRV-AD-01 &nbsp;&nbsp;| UDP 1812 &nbsp;| Authentification RADIUS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em style="color:#555;"># EN PREMIER</em><br>
+                <span class="block">BLOCK</span> &nbsp;| VLAN-WiFi → VLAN-Serveurs | Any &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Wi-Fi interdit aux serveurs<br>
+                <span class="block">BLOCK</span> &nbsp;| VLAN-WiFi → LAN-Clients &nbsp;&nbsp;| Any &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Wi-Fi interdit au LAN<br>
+                <span class="block">BLOCK</span> &nbsp;| VLAN-Serveurs → VLAN-WiFi | Any &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Serveurs interdits vers Wi-Fi<br>
+                <span class="pass">PASS</span>  &nbsp;| VLAN-Serveurs → Rsyslog &nbsp;&nbsp;| UDP 514 &nbsp;| Logs AD/NPS → Syslog<br>
+                <span class="pass">PASS</span>  &nbsp;| LAN-Clients → VLAN-Serveurs| Any &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| LAN accède à l'AD<br>
+                <span class="pass">PASS</span>  &nbsp;| VLAN-WiFi → Internet &nbsp;&nbsp;&nbsp;&nbsp;| Any &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Navigation Web clients Wi-Fi<br>
+                <span class="pass">PASS</span>  &nbsp;| VLAN-Serveurs → Internet &nbsp;| Any &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Serveurs accès Internet<br>
+                <span class="block">BLOCK</span> &nbsp;| VLAN-WiFi → Any &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Any &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Isolation résiduelle Wi-Fi
+            </div>
+        </div>
+
+        <div class="content-box">
+            <h3 style="color:var(--accent-color);">Structure Active Directory</h3>
+            <table class="infra-table">
+                <thead>
+                    <tr><th>Élément</th><th>Détail</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Domaine</td><td>simcorp.local</td></tr>
+                    <tr><td>Unités d'organisation</td><td>Direction, Informatique, Commercial, RH, Ordinateurs (Postes-fixes / Portables)</td></tr>
+                    <tr><td>Groupe clé Wi-Fi</td><td>GRP_WiFi-Autorises — utilisé par la stratégie NPS pour autoriser l'accès</td></tr>
+                    <tr><td>GPO — Sécurité de base</td><td>Mot de passe 8 cars min + complexité, verrouillage 5 tentatives / 10 min</td></tr>
+                    <tr><td>Profils itinérants</td><td>Stockés sur le TrueNAS (lien avec le projet 1)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="content-box">
+            <h3 style="color:var(--accent-color);">Compétences E5 mobilisées</h3>
+            <table class="infra-table">
+                <thead>
+                    <tr><th>Compétence</th><th>Mise en oeuvre</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Concevoir une infrastructure</td><td>Architecture multi-VLAN, plan d'adressage, segmentation réseau</td></tr>
+                    <tr><td>Déployer un service d'annuaire</td><td>Installation et configuration de l'AD DS, DNS, DHCP, GPO</td></tr>
+                    <tr><td>Sécuriser les accès réseau</td><td>Authentification 802.1X EAP-PEAP, NPS/RADIUS, isolation des VLANs</td></tr>
+                    <tr><td>Administrer un pare-feu</td><td>Politique de filtrage Stormshield, règles inter-VLAN ordonnées</td></tr>
+                    <tr><td>Superviser l'infrastructure</td><td>Centralisation des logs AD et RADIUS dans Rsyslog</td></tr>
+                    <tr><td>Configurer des équipements réseau</td><td>Switch Cisco CBS220 (VLANs, trunk), Bornes Cisco (802.1X)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
     </main>
 </body>
 </html>
