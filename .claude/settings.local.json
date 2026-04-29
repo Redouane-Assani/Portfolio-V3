@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(powershell -ExecutionPolicy Bypass -File \"c:/Users/Redouane/Portfolio-V3/tmp_read2.ps1\")",
-      "Bash(powershell -ExecutionPolicy Bypass -File \"c:/Users/Redouane/Portfolio-V3/tmp_docs.ps1\")"
+      "Bash(powershell -ExecutionPolicy Bypass -File \"c:/Users/Redouane/Portfolio-V3/tmp_docs.ps1\")",
+      "WebFetch(domain:www.journaldugeek.com)",
+      "WebFetch(domain:www.usine-digitale.fr)",
+      "WebSearch",
+      "WebFetch(domain:www.clubic.com)",
+      "WebFetch(domain:www.tntic.com)",
+      "WebFetch(domain:siecledigital.fr)"
     ]
   }
 }
