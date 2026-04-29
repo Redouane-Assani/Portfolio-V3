@@ -176,13 +176,19 @@
                 <tbody>
                     <tr><td>WAN</td><td>OUT</td><td>DHCP classe</td><td>—</td><td>Accès Internet</td></tr>
                     <tr><td>2090</td><td>LAN</td><td>172.16.209.0/24</td><td>172.16.209.1</td><td>Postes clients, Rsyslog, TrueNAS</td></tr>
-                    <tr><td>2092</td><td>DMZ</td><td>—</td><td>—</td><td>Services exposés (DMZ)</td></tr>
+                    <tr><td>2092</td><td>DMZ</td><td>172.119.201.0/24</td><td>172.119.201.1</td><td>NAS TrueNAS isolé (DMZ)</td></tr>
+                    <tr><td>VPN</td><td>Pool SSL</td><td>10.8.0.0/24</td><td>—</td><td>Clients VPN SSL distants</td></tr>
                 </tbody>
             </table>
         </div>
 
+        <div class="content-box" style="text-align:center;">
+            <p style="margin-bottom:15px; color:#aaa;">Documentation technique complète du Projet 1 : configuration Stormshield, VLANs, règles de filtrage, TrueNAS (DMZ), VPN SSL et Rsyslog.</p>
+            <a href="assets/pdf/Documentation_Technique_BTS_SIO_Redouane_Assani.docx" target="_blank" class="btn-download">📄 Télécharger la documentation technique — Projet 1 (DOCX)</a>
+        </div>
+
         <!-- ===== PROJET 2 ===== -->
-        <h2 class="section-title">Projet 2 — Active Directory &amp; Wi-Fi 802.1X <span class="badge badge-wip">EN COURS</span></h2>
+        <h2 class="section-title">Projet 2 — Active Directory &amp; Wi-Fi 802.1X <span class="badge badge-done">RÉALISÉ</span></h2>
 
         <div class="content-box">
             <h3 style="color:var(--accent-color);">Contexte</h3>
@@ -349,6 +355,11 @@
                     <tr><td>Configurer des équipements réseau</td><td>Switch Cisco CBS220 (VLANs, trunk), Bornes Cisco (802.1X)</td></tr>
                 </tbody>
             </table>
+        </div>
+
+        <div class="content-box" style="text-align:center;">
+            <p style="margin-bottom:15px; color:#aaa;">Documentation technique complète du Projet 2 : plan d'adressage, configuration AD DS, NPS/RADIUS, bornes Wi-Fi 802.1X et règles Stormshield.</p>
+            <a href="assets/pdf/Documentation_Projet2_v2.docx" target="_blank" class="btn-download">📄 Télécharger la documentation technique — Projet 2 (DOCX)</a>
         </div>
 
     </main>
